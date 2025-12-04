@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 260 30% 96%;
+  --foreground: 260 40% 10%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 260 40% 10%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 260 40% 10%;
+
+  --primary: 270 60% 40%;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 340 60% 95%;
+  --secondary-foreground: 340 60% 30%;
+
+  --muted: 260 20% 96%;
+  --muted-foreground: 260 10% 40%;
+
+  --accent: 270 50% 90%;
+  --accent-foreground: 270 60% 30%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 260 20% 90%;
+  --input: 260 20% 90%;
+  --ring: 270 60% 40%;
+
+  --radius: 1rem;
+}
+
+.dark {
+  --background: 260 40% 10%;
+  --foreground: 260 20% 98%;
+
+  --card: 260 40% 10%;
+  --card-foreground: 260 20% 98%;
+
+  --popover: 260 40% 10%;
+  --popover-foreground: 260 20% 98%;
+
+  --primary: 270 70% 60%;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 340 50% 20%;
+  --secondary-foreground: 340 50% 90%;
+
+  --muted: 260 30% 20%;
+  --muted-foreground: 260 20% 70%;
+
+  --accent: 270 40% 20%;
+  --accent-foreground: 260 20% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 260 20% 98%;
+
+  --border: 260 30% 20%;
+  --input: 260 30% 20%;
+  --ring: 270 70% 60%;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-slate-100 antialiased;
+    background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+    background-attachment: fixed;
+    background-size: cover;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .glass-input {
+    @apply bg-white/90 backdrop-blur-sm border border-gray-300 focus:ring-2 focus:ring-primary/50 outline-none text-black placeholder:text-gray-500;
+  }
+
+  .fancy-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-purple-400 to-maroon-400;
+  }
+}

@@ -1,0 +1,195 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { databases, APPWRITE_CONFIG } from '@/lib/appwrite';
+import { useParams } from 'next/navigation';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Calendar, ArrowLeft, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
+
+// Import new components
+import KeyFeatures from '@/components/tool-detail/KeyFeatures';
+import ProsAndCons from '@/components/tool-detail/ProsAndCons';
+import WhoIsUsing from '@/components/tool-detail/WhoIsUsing';
+import PricingTiers from '@/components/tool-detail/PricingTiers';
+import RatingsGrid from '@/components/tool-detail/RatingsGrid';
+import YouTubeEmbed from '@/components/tool-detail/YouTubeEmbed';
+
+export default function ToolDetails() {
+    const { id } = useParams();
+    const [tool, setTool] = useState<any>(null);
+    const [categoryName, setCategoryName] = useState('');
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (id) fetchTool();
+    }, [id]);
+
+    const fetchTool = async () => {
+        try {
+            const toolDoc = await databases.getDocument(
+                APPWRITE_CONFIG.databaseId,
+                APPWRITE_CONFIG.collections.tools,
+                id as string
+            );
+
+            // Parse JSON fields from Appwrite
+            const parsedTool = {
+                ...toolDoc,
+                pricingTiers: toolDoc.pricingTiers ?
+                    (typeof toolDoc.pricingTiers === 'string' ? JSON.parse(toolDoc.pricingTiers) : toolDoc.pricingTiers) :
+                    [],
+                ratings: toolDoc.ratings ?
+                    (typeof toolDoc.ratings === 'string' ? JSON.parse(toolDoc.ratings) : toolDoc.ratings) :
+                    null,
+            };
+
+            setTool(parsedTool);
+
+            if (toolDoc.category) {
+                const catDoc = await databases.getDocument(
+                    APPWRITE_CONFIG.databaseId,
+                    APPWRITE_CONFIG.collections.categories,
+                    toolDoc.category
+                );
+                setCategoryName(catDoc.name);
+            }
+        } catch (err) {
+            console.error('Failed to fetch tool', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (loading) return (
+        <div className="min-h-screen flex flex-col">
+            <Header />
+            <div className="flex-grow flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            </div>
+            <Footer />
+        </div>
+    );
+
+    if (!tool) return (
+        <div className="min-h-screen flex flex-col">
+            <Header />
+            <div className="flex-grow flex items-center justify-center text-muted-foreground">
+                Tool not found.
+            </div>
+            <Footer />
+        </div>
+    );
+
+    return (
+        <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+            <Header />
+
+            <main className="flex-grow container px-4 md:px-6 py-12 max-w-7xl mx-auto">
+                <Link href="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-6 transition-colors">
+                    <ArrowLeft className="mr-2 h-4 w-4" /> Back to Directory
+                </Link>
+
+                {/* Hero Section */}
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm border border-gray-200 dark:border-gray-700 mb-8">
+                    <div className="flex flex-col md:flex-row gap-6 items-start">
+                        {tool.image_url && (
+                            <div className="relative h-24 w-24 rounded-2xl overflow-hidden border-2 border-purple-200 dark:border-purple-600 shadow-md flex-shrink-0">
+                                <Image
+                                    src={tool.image_url}
+                                    alt={tool.name}
+                                    fill
+                                    className="object-cover"
+                                    sizes="96px"
+                                />
+                            </div>
+                        )}
+                        <div className="flex-grow">
+                            <h1 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                                {tool.name}
+                            </h1>
+                            <p className="text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                                {tool.description}
+                            </p>
+                            <div className="flex flex-wrap items-center gap-3">
+                                <Badge variant="outline" className="text-sm px-3 py-1">
+                                    {categoryName}
+                                </Badge>
+                                <Badge variant={tool.tool_type === 'Free' ? 'secondary' : 'default'} className="px-3 py-1">
+                                    {tool.tool_type}
+                                </Badge>
+                                {tool.dataSource === 'futurepedia' && (
+                                    <Badge className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white border-0 px-3 py-1">
+                                        ✨ Futurepedia Data
+                                    </Badge>
+                                )}
+                                <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                                    <Calendar className="h-3 w-3" />
+                                    {new Date(tool.date_added).toLocaleDateString()}
+                                </div>
+                            </div>
+                        </div>
+                        {tool.website_url && (
+                            <Link href={tool.website_url} target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
+                                <Button size="lg" className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8">
+                                    Visit Website <ExternalLink className="ml-2 h-5 w-5" />
+                                </Button>
+                            </Link>
+                        )}
+                    </div>
+                </div>
+
+                {/* Content Sections */}
+                <div className="space-y-6">
+                    {/* YouTube Video */}
+                    {tool.video_url && (
+                        <YouTubeEmbed videoUrl={tool.video_url} title={`${tool.name} demonstration`} />
+                    )}
+
+                    {/* Key Features */}
+                    {tool.keyFeatures && tool.keyFeatures.length > 0 && (
+                        <KeyFeatures features={tool.keyFeatures} />
+                    )}
+
+                    {/* Pros & Cons */}
+                    {((tool.pros && tool.pros.length > 0) || (tool.cons && tool.cons.length > 0)) && (
+                        <ProsAndCons pros={tool.pros || []} cons={tool.cons || []} />
+                    )}
+
+                    {/* Who's Using This */}
+                    {tool.whoIsUsing && tool.whoIsUsing.length > 0 && (
+                        <WhoIsUsing users={tool.whoIsUsing} />
+                    )}
+
+                    {/* Pricing */}
+                    {tool.pricingTiers && tool.pricingTiers.length > 0 && (
+                        <PricingTiers tiers={tool.pricingTiers} />
+                    )}
+
+                    {/* What Makes It Unique */}
+                    {tool.whatMakesUnique && (
+                        <section className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                                💡 What Makes {tool.name} Unique?
+                            </h2>
+                            <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+                                {tool.whatMakesUnique}
+                            </p>
+                        </section>
+                    )}
+
+                    {/* Ratings */}
+                    {tool.ratings && (
+                        <RatingsGrid ratings={tool.ratings} />
+                    )}
+                </div>
+            </main>
+
+            <Footer />
+        </div>
+    );
+}
