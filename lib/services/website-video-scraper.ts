@@ -35,7 +35,7 @@ export async function scrapeVideoFromWebsite(websiteUrl: string, toolName: strin
         });
 
         // Wait a bit for dynamic content
-        await page.waitForTimeout(2000);
+        await new Promise(resolve => setTimeout(resolve, 2000));
 
         // Extract video URL from the page
         const videoUrl = await page.evaluate(() => {
