@@ -80,7 +80,7 @@ export async function scrapeVideoFromWebsite(websiteUrl: string, toolName: strin
                 const hasVideoKeyword = videoSectionKeywords.some(keyword => sectionText.includes(keyword));
 
                 if (hasVideoKeyword) {
-                    const links = section.querySelectorAll('a[href*="youtube.com"], a[href*="youtu.be"]');
+                    const links = Array.from(section.querySelectorAll('a[href*="youtube.com"], a[href*="youtu.be"]'));
                     for (const link of links) {
                         const href = link.getAttribute('href') || '';
                         const match = href.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
