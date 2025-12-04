@@ -58,3 +58,7 @@ logo.jpg.old
 # Documentation with sensitive data
 FREE_PAID_FILTER.md
 LOGO_REPLACEMENT.md
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
