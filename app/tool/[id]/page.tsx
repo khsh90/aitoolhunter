@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar, ArrowLeft, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 // Import new components
 import KeyFeatures from '@/components/tool-detail/KeyFeatures';
@@ -24,6 +25,9 @@ export default function ToolDetails() {
     const [tool, setTool] = useState<any>(null);
     const [categoryName, setCategoryName] = useState('');
     const [loading, setLoading] = useState(true);
+
+    // Initialize animations
+    useScrollAnimation();
 
     useEffect(() => {
         if (id) fetchTool();

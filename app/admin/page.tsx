@@ -18,6 +18,7 @@ import { ProgressStep } from '@/components/ProgressStep';
 import { ProgressModal } from '@/components/ProgressModal';
 import { Loader2, Sparkles, Plus, LogOut, Trash2, Edit, Save, X, Upload, Home } from 'lucide-react';
 import { QuotaStatus, VerificationResult, UnknownToolError, LoadingStates } from '@/lib/services/types';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function AdminDashboard() {
     const router = useRouter();
@@ -25,6 +26,9 @@ export default function AdminDashboard() {
     const [user, setUser] = useState<any>(null);
     const [categories, setCategories] = useState<any[]>([]);
     const [tools, setTools] = useState<any[]>([]);
+
+    // Initialize animations
+    useScrollAnimation();
 
     // Form States
     const [editingId, setEditingId] = useState<string | null>(null);
