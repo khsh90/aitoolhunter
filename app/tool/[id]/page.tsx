@@ -93,7 +93,7 @@ export default function ToolDetails() {
         <div className="min-h-screen flex flex-col">
             <Header />
 
-            <main className="flex-grow container px-4 md:px-6 py-12 max-w-7xl mx-auto">
+            <main className="flex-grow w-full px-4 md:px-8 lg:px-12 py-12">
                 <Link href="/" className="inline-flex items-center text-sm text-slate-300 hover:text-purple-400 mb-6 transition-colors animate-on-load">
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Directory
                 </Link>
@@ -151,21 +151,21 @@ export default function ToolDetails() {
                 <div className="space-y-6">
                     {/* YouTube Video */}
                     {tool.video_url && (
-                        <div className="animate-on-scroll">
+                        <div className="animate-on-load">
                             <YouTubeEmbed videoUrl={tool.video_url} title={`${tool.name} demonstration`} />
                         </div>
                     )}
 
                     {/* Key Features */}
                     {tool.keyFeatures && tool.keyFeatures.length > 0 && (
-                        <div className="animate-on-scroll">
+                        <div className="animate-on-load">
                             <KeyFeatures features={tool.keyFeatures} />
                         </div>
                     )}
 
                     {/* Pros & Cons */}
                     {((tool.pros && tool.pros.length > 0) || (tool.cons && tool.cons.length > 0)) && (
-                        <div className="animate-on-scroll">
+                        <div className="animate-on-load">
                             <ProsAndCons pros={tool.pros || []} cons={tool.cons || []} />
                         </div>
                     )}

@@ -83,7 +83,7 @@ export default function Home() {
         <div className="min-h-screen flex flex-col">
             <Header />
 
-            <main className="flex-grow container px-4 md:px-6 py-8 space-y-8">
+            <main className="flex-grow w-full px-4 md:px-8 lg:px-12 py-8 space-y-8">
                 {/* Analytics Section */}
                 <section className="grid gap-6 md:grid-cols-3">
                     <div className="md:col-span-1 animate-on-load animate-slide-left">
