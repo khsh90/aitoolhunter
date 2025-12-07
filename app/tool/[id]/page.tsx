@@ -113,10 +113,10 @@ export default function ToolDetails() {
                             </div>
                         )}
                         <div className="flex-grow">
-                            <h1 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                            <h1 className="text-4xl md:text-5xl font-bold mb-3 text-gray-900 dark:text-white">
                                 {tool.name}
                             </h1>
-                            <p className="text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                            <p className="text-lg text-gray-600 dark:text-gray-200 mb-4 leading-relaxed">
                                 {tool.description}
                             </p>
                             <div className="flex flex-wrap items-center gap-3">
