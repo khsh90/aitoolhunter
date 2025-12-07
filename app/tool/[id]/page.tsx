@@ -94,12 +94,12 @@ export default function ToolDetails() {
             <Header />
 
             <main className="flex-grow container px-4 md:px-6 py-12 max-w-7xl mx-auto">
-                <Link href="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-6 transition-colors">
+                <Link href="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-6 transition-colors animate-on-load">
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Directory
                 </Link>
 
                 {/* Hero Section */}
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm border border-gray-200 dark:border-gray-700 mb-8">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm border border-gray-200 dark:border-gray-700 mb-8 animate-on-load">
                     <div className="flex flex-col md:flex-row gap-6 items-start">
                         {tool.image_url && (
                             <div className="relative h-24 w-24 rounded-2xl overflow-hidden border-2 border-purple-200 dark:border-purple-600 shadow-md flex-shrink-0">
@@ -151,32 +151,42 @@ export default function ToolDetails() {
                 <div className="space-y-6">
                     {/* YouTube Video */}
                     {tool.video_url && (
-                        <YouTubeEmbed videoUrl={tool.video_url} title={`${tool.name} demonstration`} />
+                        <div className="animate-on-scroll">
+                            <YouTubeEmbed videoUrl={tool.video_url} title={`${tool.name} demonstration`} />
+                        </div>
                     )}
 
                     {/* Key Features */}
                     {tool.keyFeatures && tool.keyFeatures.length > 0 && (
-                        <KeyFeatures features={tool.keyFeatures} />
+                        <div className="animate-on-scroll">
+                            <KeyFeatures features={tool.keyFeatures} />
+                        </div>
                     )}
 
                     {/* Pros & Cons */}
                     {((tool.pros && tool.pros.length > 0) || (tool.cons && tool.cons.length > 0)) && (
-                        <ProsAndCons pros={tool.pros || []} cons={tool.cons || []} />
+                        <div className="animate-on-scroll">
+                            <ProsAndCons pros={tool.pros || []} cons={tool.cons || []} />
+                        </div>
                     )}
 
                     {/* Who's Using This */}
                     {tool.whoIsUsing && tool.whoIsUsing.length > 0 && (
-                        <WhoIsUsing users={tool.whoIsUsing} />
+                        <div className="animate-on-scroll">
+                            <WhoIsUsing users={tool.whoIsUsing} />
+                        </div>
                     )}
 
                     {/* Pricing */}
                     {tool.pricingTiers && tool.pricingTiers.length > 0 && (
-                        <PricingTiers tiers={tool.pricingTiers} />
+                        <div className="animate-on-scroll">
+                            <PricingTiers tiers={tool.pricingTiers} />
+                        </div>
                     )}
 
                     {/* What Makes It Unique */}
                     {tool.whatMakesUnique && (
-                        <section className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <section className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700 animate-on-scroll">
                             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                                 💡 What Makes {tool.name} Unique?
                             </h2>
@@ -188,7 +198,9 @@ export default function ToolDetails() {
 
                     {/* Ratings */}
                     {tool.ratings && (
-                        <RatingsGrid ratings={tool.ratings} />
+                        <div className="animate-on-scroll">
+                            <RatingsGrid ratings={tool.ratings} />
+                        </div>
                     )}
                 </div>
             </main>
