@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { LayoutGrid, List as ListIcon, Search, Loader2 } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function Home() {
     const [tools, setTools] = useState<any[]>([]);
@@ -23,6 +24,9 @@ export default function Home() {
     const [typeFilter, setTypeFilter] = useState('All');
     const [sort, setSort] = useState('date'); // date | category
     const [view, setView] = useState<'grid' | 'list'>('grid');
+
+    // Initialize animations
+    useScrollAnimation();
 
     useEffect(() => {
         fetchData();
@@ -82,21 +86,21 @@ export default function Home() {
             <main className="flex-grow container px-4 md:px-6 py-8 space-y-8">
                 {/* Analytics Section */}
                 <section className="grid gap-6 md:grid-cols-3">
-                    <div className="md:col-span-1">
+                    <div className="md:col-span-1 animate-on-load animate-slide-left">
                         <AnalyticsChart data={chartData} />
                     </div>
                     <div className="md:col-span-2 flex flex-col justify-center space-y-4 text-center">
-                        <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+                        <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 animate-on-load">
                             Find the Perfect AI Tool
                         </h1>
-                        <p className="text-xl text-slate-200 max-w-2xl mx-auto mb-8 text-center">
+                        <p className="text-xl text-slate-200 max-w-2xl mx-auto mb-8 text-center animate-on-load">
                             Explore our curated directory of the best AI tools to supercharge your workflow. Updated daily with the latest innovations.
                         </p>
                     </div>
                 </section>
 
                 {/* Controls Section */}
-                <section className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white/5 p-4 rounded-xl backdrop-blur-sm border border-white/10">
+                <section className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white/5 p-4 rounded-xl backdrop-blur-sm border border-white/10 animate-on-scroll">
                     <div className="relative w-full md:w-1/3">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                         <Input

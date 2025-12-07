@@ -14,7 +14,7 @@ export default function ToolCard({ tool, categoryName }: ToolCardProps) {
 
     return (
         <Link href={`/tool/${tool.$id}`}>
-            <Card className="flex flex-col h-full hover:scale-[1.02] transition-transform duration-200 cursor-pointer overflow-hidden">
+            <Card className="flex flex-col h-full hover:scale-[1.02] transition-transform duration-200 cursor-pointer overflow-hidden animate-on-scroll">
                 {/* Elegant logo display with beautiful styling */}
                 {tool.image_url && (
                     <div className="relative w-full h-32 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-cyan-500/10 flex items-center justify-center p-6 backdrop-blur-sm">
