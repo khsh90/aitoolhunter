@@ -94,12 +94,12 @@ export default function ToolDetails() {
             <Header />
 
             <main className="flex-grow w-full px-4 md:px-8 lg:px-12 py-12">
-                <Link href="/" className="inline-flex items-center text-sm text-slate-300 hover:text-purple-400 mb-6 transition-colors animate-on-load">
+                <Link href="/" className="inline-flex items-center text-sm text-slate-300 hover:text-purple-400 mb-6 transition-colors">
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Directory
                 </Link>
 
                 {/* Hero Section */}
-                <div className="glass rounded-2xl p-8 shadow-sm border border-white/10 mb-8 animate-on-load">
+                <div className="glass rounded-2xl p-8 shadow-sm border border-white/10 mb-8">
                     <div className="flex flex-col md:flex-row gap-6 items-start">
                         {tool.image_url && (
                             <div className="relative h-24 w-24 rounded-2xl overflow-hidden border-2 border-purple-400/50 shadow-md flex-shrink-0">
@@ -151,21 +151,21 @@ export default function ToolDetails() {
                 <div className="space-y-6">
                     {/* YouTube Video */}
                     {tool.video_url && (
-                        <div className="animate-on-load">
+                        <div>
                             <YouTubeEmbed videoUrl={tool.video_url} title={`${tool.name} demonstration`} />
                         </div>
                     )}
 
                     {/* Key Features */}
                     {tool.keyFeatures && tool.keyFeatures.length > 0 && (
-                        <div className="animate-on-load">
+                        <div>
                             <KeyFeatures features={tool.keyFeatures} />
                         </div>
                     )}
 
                     {/* Pros & Cons */}
                     {((tool.pros && tool.pros.length > 0) || (tool.cons && tool.cons.length > 0)) && (
-                        <div className="animate-on-load">
+                        <div>
                             <ProsAndCons pros={tool.pros || []} cons={tool.cons || []} />
                         </div>
                     )}
