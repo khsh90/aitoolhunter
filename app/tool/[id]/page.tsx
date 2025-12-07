@@ -90,19 +90,19 @@ export default function ToolDetails() {
     );
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+        <div className="min-h-screen flex flex-col">
             <Header />
 
             <main className="flex-grow container px-4 md:px-6 py-12 max-w-7xl mx-auto">
-                <Link href="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-6 transition-colors animate-on-load">
+                <Link href="/" className="inline-flex items-center text-sm text-slate-300 hover:text-purple-400 mb-6 transition-colors animate-on-load">
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Directory
                 </Link>
 
                 {/* Hero Section */}
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm border border-gray-200 dark:border-gray-700 mb-8 animate-on-load">
+                <div className="glass rounded-2xl p-8 shadow-sm border border-white/10 mb-8 animate-on-load">
                     <div className="flex flex-col md:flex-row gap-6 items-start">
                         {tool.image_url && (
-                            <div className="relative h-24 w-24 rounded-2xl overflow-hidden border-2 border-purple-200 dark:border-purple-600 shadow-md flex-shrink-0">
+                            <div className="relative h-24 w-24 rounded-2xl overflow-hidden border-2 border-purple-400/50 shadow-md flex-shrink-0">
                                 <Image
                                     src={tool.image_url}
                                     alt={tool.name}
@@ -113,10 +113,10 @@ export default function ToolDetails() {
                             </div>
                         )}
                         <div className="flex-grow">
-                            <h1 className="text-4xl md:text-5xl font-bold mb-3 text-gray-900 dark:text-white">
+                            <h1 className="text-4xl md:text-5xl font-bold mb-3 text-white">
                                 {tool.name}
                             </h1>
-                            <p className="text-lg text-gray-600 dark:text-gray-200 mb-4 leading-relaxed">
+                            <p className="text-lg text-slate-200 mb-4 leading-relaxed">
                                 {tool.description}
                             </p>
                             <div className="flex flex-wrap items-center gap-3">
@@ -186,11 +186,11 @@ export default function ToolDetails() {
 
                     {/* What Makes It Unique */}
                     {tool.whatMakesUnique && (
-                        <section className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700 animate-on-scroll">
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                        <section className="glass rounded-xl p-6 shadow-sm border border-white/10 animate-on-scroll">
+                            <h2 className="text-2xl font-bold text-white mb-4">
                                 💡 What Makes {tool.name} Unique?
                             </h2>
-                            <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+                            <p className="text-slate-200 leading-relaxed text-lg">
                                 {tool.whatMakesUnique}
                             </p>
                         </section>
