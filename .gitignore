@@ -52,7 +52,6 @@ yarn-error.log*
 # Temporary files
 *.log
 *.tmp
-logoks.png
 logo.jpg.old
 
 # Documentation with sensitive data
