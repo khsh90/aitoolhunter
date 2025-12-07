@@ -17,8 +17,8 @@ export default function PricingTiers({ tiers }: PricingTiersProps) {
     if (!tiers || tiers.length === 0) return null;
 
     return (
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+        <section className="glass rounded-xl p-6 shadow-sm border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-6">
                 💰 Pricing
             </h2>
 

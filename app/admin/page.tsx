@@ -446,7 +446,7 @@ export default function AdminDashboard() {
     if (loading) return <div className="flex h-screen items-center justify-center"><Loader2 className="animate-spin text-primary" /></div>;
 
     return (
-        <div className="min-h-screen p-8 space-y-8 bg-background text-foreground">
+        <div className="min-h-screen p-8 space-y-8 text-slate-100">
             <div className="flex justify-between items-center glass p-4 rounded-xl">
                 <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-purple-600">Admin Dashboard</h1>
                 <div className="flex gap-3">

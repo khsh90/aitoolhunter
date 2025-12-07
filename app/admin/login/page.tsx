@@ -35,14 +35,14 @@ export default function AdminLogin() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center p-4 bg-background">
+        <div className="flex min-h-screen items-center justify-center p-4">
             <div className="absolute top-4 left-4 animate-on-load animate-slide-right">
                 <Link href="/" className="flex items-center text-violet-400 hover:text-violet-300 transition-colors font-semibold">
                     <ArrowLeft className="mr-2 h-5 w-5" /> Back to Home
                 </Link>
             </div>
             <div className="glass p-8 rounded-xl w-full max-w-md space-y-6 shadow-2xl animate-on-load animate-scale">
-                <h1 className="text-2xl font-bold text-center text-black animate-on-load">Admin Login</h1>
+                <h1 className="text-2xl font-bold text-center text-white animate-on-load">Admin Login</h1>
                 {error && <div className="text-red-400 text-sm text-center animate-fade">{error}</div>}
                 <form onSubmit={handleLogin} className="space-y-4">
                     <Input

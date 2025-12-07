@@ -11,8 +11,8 @@ export default function KeyFeatures({ features }: KeyFeaturesProps) {
     if (!features || features.length === 0) return null;
 
     return (
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+        <section className="glass rounded-xl p-6 shadow-sm border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4">
                 ✨ Key Features
             </h2>
 
@@ -34,7 +34,7 @@ export default function KeyFeatures({ features }: KeyFeaturesProps) {
                                 />
                             </svg>
                         </div>
-                        <span className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <span className="text-slate-200 leading-relaxed">
                             {feature}
                         </span>
                     </li>
